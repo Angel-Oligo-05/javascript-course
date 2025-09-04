@@ -573,6 +573,7 @@
 
 // // Keyboard events - responding to specific keys
 // input.addEventListener("keydown", function (event) {
+
 //   console.log(`Key pressed: ${event.key}`);
 
 //   if (event.key === "Enter") {
@@ -583,6 +584,108 @@
 
 
 
+
+console.log("=== CHALLENGE ===");
+const score1 = document.getElementById('score-1');
+const score2 = document.getElementById('score-2');
+const btnAddPoints = document.querySelectorAll('.btn-add');
+const btnReset = document.getElementById('btn-reset');
+const winningScoreInput = document.getElementById('winning-score');
+const targetSpan = document.querySelector('.target');
+const status = document.querySelector('.status');
+const winnerMessage = document.querySelector('.winner');
+const winnerName = document.querySelector('.winner-name');
+const player1 = document.querySelector('.player-1');
+const player2 = document.querySelector('.player-2');
+ 
+let scorePlayer1 = 0;
+let scorePlayer2 = 0;
+let winningScore = parseInt(winningScoreInput.value);
+let gameOver = false;
+ 
+function updateWinningScoreDisplay() {
+  targetSpan.textContent = winningScore;
+  status.textContent = `First to ${winningScore} wins!`;
+}
+ 
+function resetGame() {
+  scorePlayer1 = 0;
+  scorePlayer2 = 0;
+  gameOver = false;
+  score1.textContent = scorePlayer1;
+  score2.textContent = scorePlayer2;
+  winnerMessage.classList.add('hidden');
+  winnerName.textContent = 'Player';
+  player1.classList.remove('winner', 'loser');
+  player2.classList.remove('winner', 'loser');
+  updateWinningScoreDisplay();
+}
+ 
+function addPoint(player) {
+  if (gameOver) return;
+ 
+  if (player === 1) {
+    scorePlayer1++;
+    score1.textContent = scorePlayer1;
+    if (scorePlayer1 >= winningScore) {
+      endGame(1);
+    }
+  } else if (player === 2) {
+    scorePlayer2++;
+    score2.textContent = scorePlayer2;
+    if (scorePlayer2 >= winningScore) {
+      endGame(2);
+    }
+  }
+}
+ 
+function endGame(winningPlayer) {
+  gameOver = true;
+  winnerMessage.classList.remove('hidden');
+  winnerName.textContent = `Player ${winningPlayer}`;
+ 
+  if (winningPlayer === 1) {
+    player1.classList.add('winner');
+    player2.classList.add('loser');
+  } else {
+    player2.classList.add('winner');
+    player1.classList.add('loser');
+  }
+}
+ 
+btnAddPoints.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const player = parseInt(btn.getAttribute('data-player'));
+    addPoint(player);
+  });
+});
+ 
+btnReset.addEventListener('click', resetGame);
+ 
+winningScoreInput.addEventListener('change', () => {
+  let val = parseInt(winningScoreInput.value);
+  if (isNaN(val) || val < 1) {
+    val = 1;
+  } else if (val > 20) {
+    val = 20;
+  }
+  winningScoreInput.value = val;
+  winningScore = val;
+  updateWinningScoreDisplay();
+  resetGame();
+});
+ 
+window.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+ 
+  if (e.key === '1') {
+    addPoint(1);
+  } else if (e.key === '2') {
+    addPoint(2);
+  } else if (e.key.toLowerCase() === 'r') {
+    resetGame();
+  }
+});
 
 
 
