@@ -37,6 +37,18 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log('Player guessed: ', guess);
 
+//input validation label
+if ( !guess && guess !== 0) {
+    document.querySelector('.message').textContent = 'Please input a number!';
+    return; 
+}
+if (guess < 1 || guess > 20) {
+    document.querySelector('.message').textContent = 'Number must be between 1 - 20';
+    return; 
+}
+
+
+//Winning
   if (guess === secretNumber) {
 console.log('Wow! Correct guess!');
 document.querySelector('.number').textContent = secretNumber; 
@@ -46,30 +58,36 @@ if (score > highscore) {
 }
 
 
-document.querySelector('.message').textContent = 'Hooray🎉! You Won!';
-document.querySelector('.guess').disabled = true;
-  document.querySelector('.check').disabled = true;
+    document.querySelector('.message').textContent = 'Hooray🎉! You Won!';
+    document.querySelector('.guess').disabled = true;
+    document.querySelector('.check').disabled = true;
+    document.body.style.backgroundColor = 'Blue'; 
+    document.querySelector('.guess').value = ''; 
 
-
+//Losing
   } else if (guess > secretNumber) {
     console.log('Ngek, too high!');
     document.querySelector('.message').textContent = 'Ngek, too high!';
     score --; 
      if (score < 1) {
-  document.querySelector('.message').textContent = 'No💥 You lost!';
+  document.querySelector('.message').textContent = 'Game Over💥 Try Again!';
   document.querySelector('.number').textContent = secretNumber;
   document.querySelector('.guess').disabled = true;
   document.querySelector('.check').disabled = true;
+  document.body.style.backgroundColor = 'Red'; 
+  document.querySelector('.guess').value = ''; 
 }
 } else if (guess < secretNumber) {
     console.log('Hala, too low!');
     document.querySelector('.message').textContent = 'Hala, too low!';
     score --;
      if (score < 1) {
-  document.querySelector('.message').textContent = 'No💥 You lost!';
+  document.querySelector('.message').textContent = 'Game Over💥 Try Again!';
   document.querySelector('.number').textContent = secretNumber;
   document.querySelector('.guess').disabled = true;
   document.querySelector('.check').disabled = true;
+document.body.style.backgroundColor = 'Red'; 
+document.querySelector('.guess').value = ''; 
 }
   }
  
@@ -87,7 +105,10 @@ document.querySelector('.again').addEventListener('click', function () {
 
     document.querySelector('.guess').disabled = false;
   document.querySelector('.check').disabled = false;
+   document.body.style.backgroundColor = ''; 
 });
+
+
 
 
 
