@@ -95,29 +95,77 @@
 // timer.startModern();
 
 
-const functionTypes = {
-    regularFunction: function () {
-        console.log('Arguments length: ', arguments.length);
-        console.log('First argument:', arguments[0]);
+// const functionTypes = {
+//     regularFunction: function () {
+//         console.log('Arguments length: ', arguments.length);
+//         console.log('First argument:', arguments[0]);
 
-    },
+//     },
 
-    arrowFunction: () => {
-        console.log(arguments);
-        console.log('Arrow function called');
+//     arrowFunction: () => {
+//         console.log(arguments);
+//         console.log('Arrow function called');
 
-    },
+//     },
 
-    modernFunction: (...args) =>{
-        console.log('Args length', args.length);
-        console.log('First args', args[0]);
-    },
+//     modernFunction: (...args) =>{
+//         console.log('Args length', args.length);
+//         console.log('First args', args[0]);
+//     },
+// };
+
+// // functionTypes.regularFunction('hello', 'world');
+// // functionTypes.arrowFunction('test');
+
+
+// let age = 30;
+// let oldage = age;
+
+// age = 31;
+// console.log('age', age);
+// console.log('oldage', age);
+
+// const me = {name: 'Adel', age: 20 };
+
+// const friend = me;
+
+// friend.name = 'Zoe';
+// friend.age = 21;
+
+// console.log('me:', me);
+// console.log('friend:', friend);
+
+
+// const original = {
+//     name: 'Adel',
+//     age: 20,
+//     hobbies: ['dancing', 'singing'],
+// };
+
+// const shallowCopy = { ...original };
+
+// shallowCopy.name = 'Angel';
+
+// console.log('original name:', original.name);
+// console.log('copy name:', shallowCopy.name);
+
+// shallowCopy.hobbies.push('singing');
+// console.log(original.hobbies);
+// console.log(shallowCopy.hobbies);
+
+
+const deepOriginal = {
+    name: 'Adel',
+    age: 20,
+    address: {city: 'Tokyo', country: 'Japan' },
+    hobbies: ['performing', 'traveling'],
 };
 
-// functionTypes.regularFunction('hello', 'world');
-// functionTypes.arrowFunction('test');
+const deepCopy = structuredClone(deepOriginal);
 
+deepCopy.address.city = 'Saitama';
+deepCopy.hobbies.push('singing');
+deepCopy.name = 'Gil';
 
-
-
-
+console.log(deepOriginal);
+console.log(deepCopy);
