@@ -241,6 +241,7 @@ git commit
 Copy this commit message:
 
 ```
+
 refactor: organize game code with helpers, constants, and clean handlers
 
 - Centralize constants and cache DOM selectors

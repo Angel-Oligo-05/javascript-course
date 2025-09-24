@@ -5,7 +5,6 @@ const MIN_NUMBER = 1;
 const MAX_NUMBER = 20;
 const START_SCORE = 20;
 
-
 // Cached selectors
 const bodyEl = document.body;
 const messageEl = document.querySelector('.message');
@@ -15,7 +14,6 @@ const highscoreEl = document.querySelector('.highscore');
 const guessInputEl = document.querySelector('.guess');
 const checkBtnEl = document.querySelector('.check');
 const againBtnEl = document.querySelector('.again');
-
 
 // UI Helpers
 function setMessage(text) {
@@ -40,8 +38,6 @@ function setNumber(value) {
 function setScore(value) {
   scoreEl.textContent = value;
 }
-
-
 
 // Game State Variable
 let secretNumber = Math.trunc(Math.random() * MAX_NUMBER) + MIN_NUMBER;
@@ -73,30 +69,31 @@ checkBtnEl.addEventListener('click', function () {
   const guess = Number(guessInputEl.value);
   console.log('Player guessed: ', guess);
 
-//input validation label
- if (!guess) return setMessage('Please input a number!');
+  //input validation label
+  if (!guess) return setMessage('Please input a number!');
   if (guess < MIN_NUMBER || guess > MAX_NUMBER)
     return setMessage(
       `Number must be between ${MIN_NUMBER} and ${MAX_NUMBER}!`
     );
 
-
-//Winning
+  //Winning
   if (guess === secretNumber) {
-setMessage("YIS GALING! Your Guess is CORRECT! 🎉");
-setNumber(secretNumber);
-setBackground('Blue');
-if (score > highscore) {
-    highscore = score;
-    setHighscore (highscore);
-}
-disablePlay(true);
-clearInput(''); 
-return;
+    setMessage('YIS GALING! Your Guess is CORRECT! 🎉');
+    setNumber(secretNumber);
+    setBackground('Blue');
+    if (score > highscore) {
+      highscore = score;
+      setHighscore(highscore);
+    }
+    disablePlay(true);
+    clearInput('');
+    return;
   }
 
-//Losing
-    setMessage(guess > secretNumber ? 'Engk! Too high! 📈 ' : 'Ngek! Too low! 📉 ');
+  //Losing
+  setMessage(
+    guess > secretNumber ? 'Engk! Too high! 📈 ' : 'Ngek! Too low! 📉 '
+  );
   score--;
   setScore(score);
 
@@ -114,7 +111,6 @@ againBtnEl.addEventListener('click', function () {
   renderInitialUI();
 });
 
-
 // Enter key submits when possible
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Enter' && !checkBtnEl.disabled) {
@@ -126,9 +122,3 @@ window.addEventListener('keydown', function (e) {
 againBtnEl.addEventListener('click', function () {
   guessInputEl.focus();
 });
-
-
-
-
-
-
