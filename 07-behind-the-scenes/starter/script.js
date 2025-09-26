@@ -8,7 +8,6 @@
 // let letX = 2;
 // const constX = 3;
 
-
 // function addDecl (a, b) {
 //     return a + b;
 // }
@@ -18,7 +17,6 @@
 // }
 
 // const addArrow = (a, b) => a + b;
-
 
 // const person = {
 //     name: 'Adel',
@@ -34,14 +32,13 @@
 
 // //Borrow greet function
 // anotherPerson.greet = person.greet;
-  
+
 // //display or run the greet function for anotherPerson
 // anotherPerson.greet();
 
 // //detached function
 // const greetFunction = person.greet;
 // greetFunction();
-
 
 // const obj = {
 //     name: 'Objects',
@@ -94,7 +91,6 @@
 
 // timer.startModern();
 
-
 // const functionTypes = {
 //     regularFunction: function () {
 //         console.log('Arguments length: ', arguments.length);
@@ -117,7 +113,6 @@
 // // functionTypes.regularFunction('hello', 'world');
 // // functionTypes.arrowFunction('test');
 
-
 // let age = 30;
 // let oldage = age;
 
@@ -134,7 +129,6 @@
 
 // console.log('me:', me);
 // console.log('friend:', friend);
-
 
 // const original = {
 //     name: 'Adel',
@@ -153,12 +147,11 @@
 // console.log(original.hobbies);
 // console.log(shallowCopy.hobbies);
 
-
 const deepOriginal = {
-    name: 'Adel',
-    age: 20,
-    address: {city: 'Tokyo', country: 'Japan' },
-    hobbies: ['performing', 'traveling'],
+  name: 'Adel',
+  age: 20,
+  address: { city: 'Tokyo', country: 'Japan' },
+  hobbies: ['performing', 'traveling'],
 };
 
 const deepCopy = structuredClone(deepOriginal);
