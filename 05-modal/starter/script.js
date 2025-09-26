@@ -1,37 +1,34 @@
 'use strict';
 
-
 // modal elements
 const modalEl = document.querySelector('.modal');
 
 // overlay modal
 const overlayEl = document.querySelector('.overlay');
 
-// close modal 
+// close modal
 const btnCloseModalEl = document.querySelector('.close-modal');
 
-// open modal 
+// open modal
 const btnsOpenModalEl = document.querySelectorAll('.show-modal');
 
-
 const openModal = function () {
-    // remove hidden classname in modal
-    modalEl.classList.remove('hidden');
-    // remove the hidden keyword classname in overlay
-    overlayEl.classList.remove('hidden');
+  // remove hidden classname in modal
+  modalEl.classList.remove('hidden');
+  // remove the hidden keyword classname in overlay
+  overlayEl.classList.remove('hidden');
 
-    modalEl.focus ();
-    lastFocusedButton = document.activeElement;
+  modalEl.focus();
+  lastFocusedButton = document.activeElement;
 };
 
-
 const closeModal = function () {
-    modalEl.classList.add('hidden');
-    overlayEl.classList.add('hidden');
+  modalEl.classList.add('hidden');
+  overlayEl.classList.add('hidden');
 
-    if(lastFocusedButton) {
-        lastFocusedButton.focus();
-    }
+  if (lastFocusedButton) {
+    lastFocusedButton.focus();
+  }
 };
 
 btnsOpenModalEl.forEach(btn => btn.addEventListener('click', openModal));
@@ -39,11 +36,10 @@ btnCloseModalEl.addEventListener('click', closeModal);
 overlayEl.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
-   if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
-       closeModal();
-}
+  if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
+    closeModal();
+  }
 });
-
 
 modalEl.setAttribute('role', 'dialog');
 modalEl.setAttribute('aria-modal', 'true');
